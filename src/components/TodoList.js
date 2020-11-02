@@ -1,16 +1,14 @@
 import React from "react";
 import Todo from "./Todo";
 
-import { addTodo, toggleCompleted, clearCompleted } from "../actions/actions";
-
-export default function TodoList({ todoList }) {
+const TodoList = ({ todoList, finishTodo }) => {
   return (
     <div>
-      {todoList.map((todo) => {
-        return (
-          <Todo text={todo.text} completed={todo.completed} id={todo.id} />
-        );
-      })}
+      {todoList.map((todo) => (
+        <Todo key={todo.id} todo={todo} finishTodo={finishTodo} />
+      ))}
     </div>
   );
-}
+};
+
+export default TodoList;
