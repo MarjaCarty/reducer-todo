@@ -5,7 +5,8 @@ export const addTodo = (newTodo) => {
 };
 
 export const toggleCompleted = (todo) => {
-  return { type: TOGGLE, payload: !todo.completed };
+  const task = { ...todo, completed: !todo.completed };
+  return { type: TOGGLE, payload: task };
 };
 
 export const clearCompleted = (todoList) => {

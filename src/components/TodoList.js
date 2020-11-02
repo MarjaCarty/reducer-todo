@@ -1,13 +1,16 @@
-import React, { useReducer } from "react";
+import React from "react";
 import Todo from "./Todo";
-import { initialState, reducer } from "../reducers/reducer";
 
-export default function TodoList() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+import { addTodo, toggleCompleted, clearCompleted } from "../actions/actions";
 
+export default function TodoList({ todoList }) {
   return (
     <div>
-      <h1>Working</h1>
+      {todoList.map((todo) => {
+        return (
+          <Todo text={todo.text} completed={todo.completed} id={todo.id} />
+        );
+      })}
     </div>
   );
 }

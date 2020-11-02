@@ -1,9 +1,13 @@
 import React from "react";
-
-export default function Todo() {
+const Todo = ({ todo, finishTodo }) => {
   return (
-    <div>
-      <h1>Working</h1>
-    </div>
+    <p
+      onClick={() => finishTodo(todo.id)}
+      className={todo.completed ? "finished" : ""}
+    >
+      {todo.name}
+    </p>
   );
-}
+};
+
+export default Todo;
