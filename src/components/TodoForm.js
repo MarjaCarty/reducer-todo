@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TodoForm = ({ addTodo, clearTodos }) => {
+const TodoForm = ({ add, clearTodos }) => {
   const [newTodo, setNewTodo] = useState("");
 
   const onChange = (e) => {
@@ -9,7 +9,7 @@ const TodoForm = ({ addTodo, clearTodos }) => {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    addTodo(newTodo);
+    add(newTodo);
     setNewTodo("");
   };
 

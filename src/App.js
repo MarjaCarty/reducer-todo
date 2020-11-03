@@ -1,49 +1,31 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-
-const initialListState = [];
+import { reducer } from "./reducers/reducer";
+import { addTodo, toggleCompleted, clearCompleted } from "./actions/actions";
 
 const App = () => {
-  const [todos, setTodos] = useState(initialListState);
+  const [state, dispatch] = useReducer(reducer, []);
 
-  const addTodo = (todo) => {
-    setTodos([
-      ...todos,
-      {
-        name: todo,
-        id: Math.random(),
-        completed: false,
-      },
-    ]);
+  const add = (todo) => {
+    dispatch(addTodo(todo));
   };
-
-  const finishTodo = (todoId) => {
-    setTodos(
-      todos.map((item) => {
-        if (item.id === todoId) {
-          return {
-            ...item,
-            completed: !item.completed,
-          };
-        } else {
-          return item;
-        }
-      })
-    );
+  console.log(state);
+  const finishTodo = (todo) => {
+    dispatch(toggleCompleted(todo));
   };
 
   const clearTodos = () => {
-    setTodos(todos.filter((item) => !item.completed));
+    dispatch(clearCompleted(state));
   };
 
   return (
     <div className="todos-container">
       <h1>Welcome to your Todo App!</h1>
-      <TodoForm addTodo={addTodo} clearTodos={clearTodos} />
+      <TodoForm add={add} clearTodos={clearTodos} />
       <TodoList
         finishTodo={finishTodo}
-        todoList={todos}
+        todoList={state}
         clearTodos={clearTodos}
       />
     </div>

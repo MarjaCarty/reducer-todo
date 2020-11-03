@@ -1,15 +1,13 @@
 export const [ADD, TOGGLE, CLEAR] = ["ADD", "TOGGLE", "CLEAR"];
 
-export const addTodo = (newTodo) => {
-  return { type: ADD, payload: newTodo };
+export const addTodo = (text) => {
+  return { type: ADD, id: Date.now(), todo: text };
 };
 
 export const toggleCompleted = (todo) => {
-  const task = { ...todo, completed: !todo.completed };
-  return { type: TOGGLE, payload: task };
+  return { type: TOGGLE, payload: todo };
 };
 
 export const clearCompleted = (todoList) => {
-  const filteredTodos = todoList.filter((todo) => !todo.completed);
-  return { type: CLEAR, payload: filteredTodos };
+  return { type: CLEAR };
 };

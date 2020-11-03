@@ -2,10 +2,10 @@ import React from "react";
 const Todo = ({ todo, finishTodo }) => {
   return (
     <p
-      onClick={() => finishTodo(todo.id)}
+      onClick={() => finishTodo(todo)}
       className={todo.completed ? "finished" : ""}
     >
-      {todo.name}
+      {todo.todo}
     </p>
   );
 };
